@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:partnr/SwipeAnimation/data.dart';
-import 'package:partnr/SwipeAnimation/dummyCard.dart';
-import 'package:partnr/SwipeAnimation/activeCard.dart';
+import 'package:Partnr/SwipeAnimation/data.dart';
+import 'package:Partnr/SwipeAnimation/dummyCard.dart';
+import 'package:Partnr/SwipeAnimation/activeCard.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:partnr/SwipeAnimation/details.dart';
+import 'package:Partnr/SwipeAnimation/details.dart';
 import 'package:flutter/material.dart';
 
 Map<int, Color> color =
@@ -97,7 +97,7 @@ Positioned mainCard(
                             padding: new EdgeInsets.all(0.0),
                             onPressed: () {
                               swipeLeft();
-                              dismissImg();
+                              dismissImg(img);
                             },
                             child: new Container(
                               height: 60.0,
@@ -116,7 +116,7 @@ Positioned mainCard(
                             padding: new EdgeInsets.all(0.0),
                             onPressed: () {
                               swipeRight();
-                              dismissImg();
+                              dismissImg(img);
                             },
                             child: new Container(
                               height: 60.0,

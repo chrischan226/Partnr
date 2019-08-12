@@ -1,7 +1,23 @@
-import 'package:partnr/SwipeAnimation/data.dart';
-import 'package:partnr/SwipeAnimation/styles.dart';
+import 'package:Partnr/SwipeAnimation/data.dart';
+import 'package:Partnr/SwipeAnimation/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+
+Map<int, Color> color =
+    {
+    50:Color.fromRGBO(136,14,79, .1),
+    100:Color.fromRGBO(136,14,79, .2),
+    200:Color.fromRGBO(136,14,79, .3),
+    300:Color.fromRGBO(136,14,79, .4),
+    400:Color.fromRGBO(136,14,79, .5),
+    500:Color.fromRGBO(136,14,79, .6),
+    600:Color.fromRGBO(136,14,79, .7),
+    700:Color.fromRGBO(136,14,79, .8),
+    800:Color.fromRGBO(136,14,79, .9),
+    900:Color.fromRGBO(136,14,79, 1),
+    };
+
+MaterialColor colorCustom = MaterialColor(0xFFFFCDD2, color);
 
 class DetailPage extends StatefulWidget {
   final DecorationImage type;
@@ -26,14 +42,25 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
     _containerController = new AnimationController(
       duration: new Duration(milliseconds: 2000), vsync: this);
     super.initState();
+
     width = new Tween<double>(
-      begin: 200.0,
+      begin: 220.0,
       end: 220.0).animate(
         new CurvedAnimation(
           parent: _containerController,
           curve: Curves.ease,
         ),
       );
+
+    height = new Tween<double>(
+      begin: 400.0,
+      end: 400.0
+      ).animate(new CurvedAnimation(
+        parent: _containerController,
+        curve: Curves.ease,
+      ),
+    );
+
     height.addListener(() {
       setState(() {
         if (height.isCompleted) {}
@@ -55,13 +82,13 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
     return new Theme(
       data: new ThemeData(
         brightness: Brightness.light,
-        primaryColor: const Color.fromRGBO(106, 94, 175, 1.0),
+        primaryColor: colorCustom,
         platform: Theme.of(context).platform,
       ),
       child: new Container(
         width: width.value,
         height: height.value,
-        color: const Color.fromRGBO(106, 94, 175, 1.0),
+        color: colorCustom,
         child: new Hero(
           tag: "img",
           child: new Card(
@@ -89,7 +116,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                           },
                           icon: new Icon(
                             Icons.arrow_back,
-                            color: Colors.cyan,
+                            color: Colors.white,
                             size: 30.0,
                           ),
                         ),
@@ -99,7 +126,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                             _appBarBehavior == AppBarBehavior.snapping,
                         snap: _appBarBehavior == AppBarBehavior.snapping,
                         flexibleSpace: new FlexibleSpaceBar(
-                          title: new Text("Party"),
+                          title: new Text("Julio Fuentes", style: new TextStyle(color: Colors.white)),
                           background: new Stack(
                             fit: StackFit.expand,
                             children: <Widget>[
@@ -138,26 +165,26 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                         new Row(
                                           children: <Widget>[
                                             new Icon(
-                                              Icons.access_time,
-                                              color: Colors.cyan,
+                                              Icons.star_border,
+                                              color: colorCustom,
                                             ),
                                             new Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text("10:00  AM"),
+                                              child: new Text("5/5"),
                                             )
                                           ],
                                         ),
                                         new Row(
                                           children: <Widget>[
                                             new Icon(
-                                              Icons.map,
-                                              color: Colors.cyan,
+                                              Icons.link,
+                                              color: colorCustom,
                                             ),
                                             new Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text("15 MILES"),
+                                              child: new Text("github.com/juliofuentes", style: new TextStyle(color: Colors.lightBlue)),
                                             )
                                           ],
                                         ),
@@ -174,7 +201,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   new Text(
-                                      "I'm very smart"),
+                                      "I have worked in a wide variety of jobs ranging from the radio industry, to computer programming, to being a pro eSports-athlete! No matter what the job, I've gotten ahead because I've honed my ability to communicate with people in a manner that is simple, straight forward yet full of positivity and charisma! \n\nYour project needs somebody who is competent, has the brains to understand and execute, but brings a positive spirit that radiates and spreads to everyone. Look no further! Thank you for considering me! "),
                                   new Container(
                                     margin: new EdgeInsets.only(top: 25.0),
                                     padding: new EdgeInsets.only(
@@ -192,7 +219,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           CrossAxisAlignment.start,
                                       children: <Widget>[
                                         new Text(
-                                          "ATTENDEES",
+                                          "Recommendations",
                                           style: new TextStyle(
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -233,14 +260,13 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       width: 600.0,
                       height: 80.0,
                       decoration: new BoxDecoration(
-                        color: new Color.fromRGBO(121, 114, 173, 1.0),
+                        color: colorCustom,
                       ),
                       alignment: Alignment.center,
                       child: new Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           new FlatButton(
-                              padding: new EdgeInsets.all(0.0),
                               onPressed: () {},
                               child: new Container(
                                 height: 60.0,
