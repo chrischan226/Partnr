@@ -39,6 +39,10 @@ flutter:
     - graphics/funcle.png
     - graphics/matrix.png
     - graphics/grocery.png
+    - graphics/julio.JPG
+    - graphics/connie.JPG
+    - graphics/ram.JPG
+    - graphics/janelle.JPG
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
