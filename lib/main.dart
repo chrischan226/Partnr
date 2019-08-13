@@ -141,10 +141,145 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){print('test');},
+        onPressed: (){  
+          Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Projects()),
+              );
+        },
         backgroundColor: colorCustom,
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class Projects extends StatefulWidget {
+  @override 
+  ProjectsState createState() => new ProjectsState();
+}
+
+class ProjectsState extends State<Projects> {
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final name = TextEditingController();
+  final desc = TextEditingController();
+  final img = TextEditingController();
+  String _name;
+  String _description;
+  String _image;
+
+  void initState() {
+   name.addListener(() {
+     final text = name.text.toLowerCase();
+     name.value = name.value.copyWith(
+       text: text,
+       selection:
+           TextSelection(baseOffset: text.length, extentOffset: text.length),
+       composing: TextRange.empty,
+     );
+   });
+   super.initState();
+ }
+
+  void dispose() {
+    name.dispose();
+    super.dispose();
+  }
+
+  Widget build(BuildContext context) {
+    Map<int, Color> color =
+    {
+    50:Color.fromRGBO(136,14,79, .1),
+    100:Color.fromRGBO(136,14,79, .2),
+    200:Color.fromRGBO(136,14,79, .3),
+    300:Color.fromRGBO(136,14,79, .4),
+    400:Color.fromRGBO(136,14,79, .5),
+    500:Color.fromRGBO(136,14,79, .6),
+    600:Color.fromRGBO(136,14,79, .7),
+    700:Color.fromRGBO(136,14,79, .8),
+    800:Color.fromRGBO(136,14,79, .9),
+    900:Color.fromRGBO(136,14,79, 1),
+    };
+
+    MaterialColor colorCustom = MaterialColor(0xFFFFCDD2, color);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Partnr', style: TextStyle(color: Colors.white, fontSize: 32.0)),
+      ),
+      body: Center(
+          child: new Container (
+          width: 350.0,
+          child: new Form(
+            key: _formKey,
+            child: new ListView(
+              children: <Widget>[
+                Padding(padding: const EdgeInsets.all(8.0),),
+                new TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Project Name' 
+                  ),
+                  validator: (value) {
+                    if(value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  onSaved: (v) => setState((){_name = v;}),
+                  controller: name,
+                ),
+                Padding(padding: const EdgeInsets.all(8.0),),
+                new TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Description' 
+                  ),
+                  validator: (value) {
+                    if(value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                  onSaved: (v) => setState((){_description = v;}),
+                  controller: desc,
+                ),
+                Padding(padding: const EdgeInsets.all(8.0),),
+                new TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Image' 
+                  ),
+                  validator: (value) {
+                    if(value.isEmpty) {
+                      return 'Please enter link to image';
+                    }
+                    return null;
+                  },
+                  onSaved: (v) { setState((){_image = v;});},
+                  controller: img,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 40.0),                  
+                  child: Container(
+                    child: ButtonTheme(
+                    height: 45.0,
+                    child: RaisedButton(
+                    onPressed: () {
+                      if(_formKey.currentState.validate()) {
+                        _formKey.currentState.save();
+                        name.text = "";
+                        desc.text = "";
+                        img.text = "";
+                      }
+                    },
+                    child: Text('Submit'),
+                  ),
+                  ),
+                ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
